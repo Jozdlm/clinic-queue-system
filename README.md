@@ -1,28 +1,25 @@
-# University Projects Repository
+# Clinic Queue System
 
-Welcome to my university projects repository! This repository contains various projects, homeworks, labs, and assignments from my coursework. The projects span multiple programming languages and technologies.
+### About project
 
-Feel free to explore the repository, each folder correspond to a project.
+Web-based clinic queue system. The system allows patients to request attention tickets for one of five medical specialties — Medicina General (General Medicine), Oculista (Optometrist), Dermatología (Dermatology), Oftalmología (Ophthalmology) and Cardiología (Cardiology) — through a self-service kiosk screen. Clinical staff manage the patient flow through a dedicated dashboard where they can call the next patient, mark tickets as attended or cancel them. A real-time waiting room display powered by WebSockets keeps patients informed of which ticket is currently being called at each clinic. Administrators have access to reporting tools that visualize ticket distribution by clinic and by status.
 
 ## Table of Contents
 
-- [Projects](#projects)
+- [Stack](#stack)
 - [License](#license)
 
-## Projects
+## Stack
 
-| Project Name                                            | Description                                            | Language   | Type    |
-| ------------------------------------------------------- | ------------------------------------------------------ | ---------- | ------- |
-| [Employee Manager](/employee-managment/)                | Application for managing employee data.                | C++        | Console |
-| [Age Calculator](/age-calculator/)                      | Application that calculates a person’s age.            | C#         | Console |
-| [Library Manager](/library-managment/)                  | Application for managing books in a library.           | C#         | Console |
-| [Arithmetic Calculator](/arithmetic-calculator/)        | Application that performs basic arithmetic operations  | C#         | Console |
-| [BMI Calculator](/bmi-calculator/)                      | Application that calculates the Body Mass Index (BMI). | C#         | Console |
-| [Medical Prescription System](/medical-prescription/)   | Application that manages medical prescriptions.        | C#         | Console |
-| [Bank Account Manager](/bank-account-manager/)          | Application that manages a bank account transactions.  | C#         | Console |
-| [Veterinary clinic System](/veterinary-clinic-system/)  | Application that performs basic clinic operations.     | Java       | Console |
-| [Library Shop System](/library-shop-system/)            | Application for renting books and managing users.      | C#         | Console |
-| [Medical Appointments Rest API](/medical-appointments/) | Rest API for managing medical appointments.            | TypeScript | Web     |
+- Frontend
+  - Dashboard: `Angular`
+  - Kiosk: `HTML, CSS, JS`
+  - Queue: `HTML, CSS, JS`
+- Backend: `Golang`
+- Database: `Mysql`
+- Hosting: `Railway`
+
+## Screenshots
 
 ## License
 
