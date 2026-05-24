@@ -19,7 +19,11 @@ Web-based clinic queue system. The system allows patients to request attention t
 - Database: `Mysql`
 - Hosting: `Railway`
 
-## Screenshots
+## Demo
+
+### Kiosk
+
+![Kiosk](assets/screenshots/kiosk.gif)
 
 ## License
 
