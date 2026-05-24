@@ -7,6 +7,7 @@ Web-based clinic queue system. The system allows patients to request attention t
 ## Table of Contents
 
 - [Stack](#stack)
+- [Demo](#demo)
 - [License](#license)
 
 ## Stack
