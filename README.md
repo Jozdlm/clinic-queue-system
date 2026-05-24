@@ -25,6 +25,10 @@ Web-based clinic queue system. The system allows patients to request attention t
 
 ![Kiosk](assets/screenshots/kiosk.gif)
 
+### Dashboard (Admin)
+
+![Admin](assets/screenshots/admin.gif)
+
 ## License
 
 This project is open source and available under the MIT License.
