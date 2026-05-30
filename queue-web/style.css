@@ -1,0 +1,321 @@
+/* ═══════════════════════════════════════════════════════════
+   style.css  —  Queue · Sala de Espera  (diseño claro)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── TOKENS ──────────────────────────────────────────────── */
+:root {
+  --bg-from:     #1a6b6b;
+  --bg-to:       #0f1f3d;
+
+  --card-bg:     #ffffff;
+  --card-radius: 20px;
+  --card-shadow: 0 8px 32px rgba(0,0,0,.18);
+
+  --teal:        #2bbfaa;
+  --teal-light:  #e8f9f7;
+  --blue:        #4a90d9;
+  --purple:      #9b6dd6;
+  --coral:       #e86060;
+  --orange:      #f09a3e;
+  --green:       #4cba7a;
+
+  --text-dark:   #1a2340;
+  --text-mid:    #6b7a99;
+  --text-light:  #a0aec0;
+  --divider:     #eef1f6;
+
+  --font:        'Poppins', sans-serif;
+}
+
+/* ─── BASE ────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  font-family: var(--font);
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(145deg, var(--bg-from) 0%, var(--bg-to) 100%);
+  min-height: 100vh;
+}
+
+/* ─── HEADER ──────────────────────────────────────────────── */
+.header {
+  text-align: center;
+  padding: 28px 40px 18px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.header__title {
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: .01em;
+}
+
+.header__clock {
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-weight: 400;
+  color: rgba(255,255,255,.75);
+  margin-top: 4px;
+  letter-spacing: .04em;
+}
+
+/* WS status — esquina superior derecha */
+.header__ws {
+  position: absolute;
+  top: 28px; right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.header__dot {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.3);
+  transition: background .3s, box-shadow .3s;
+}
+.header__dot.connected {
+  background: #4cff9a;
+  box-shadow: 0 0 8px #4cff9a;
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+.header__dot.error { background: #ff6b6b; box-shadow: 0 0 8px #ff6b6b; }
+
+@keyframes pulse-dot {
+  0%,100% { opacity:1; } 50% { opacity:.35; }
+}
+
+.header__status {
+  font-size: .68rem;
+  color: rgba(255,255,255,.55);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* ─── GRID ────────────────────────────────────────────────── */
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 1fr;
+  gap: 20px;
+  padding: 0 32px 28px;
+  min-height: 0;
+}
+
+/* Cuando hay 5 clínicas: 3 arriba + 2 centradas abajo */
+.grid > :nth-child(4) { grid-column: 1; }
+.grid > :nth-child(5) { grid-column: 2; }
+
+/* ─── TARJETA ─────────────────────────────────────────────── */
+.clinic-card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 26px 22px;
+  gap: 0;
+  transition: transform .25s, box-shadow .25s;
+  position: relative;
+  overflow: hidden;
+  animation: card-in .4s ease both;
+}
+
+@keyframes card-in {
+  from { opacity:0; transform: translateY(16px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+/* Sutil borde superior de color cuando está activa */
+.clinic-card.is-active::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  border-radius: var(--card-radius) var(--card-radius) 0 0;
+  background: var(--card-accent, var(--teal));
+}
+
+/* ── Cabecera de tarjeta ── */
+.card__header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1.5px solid var(--divider);
+}
+
+.card__icon {
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: var(--icon-bg, #e8f9f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.card__name {
+  font-size: clamp(.82rem, 1.1vw, 1rem);
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+/* ── Cuerpo ── */
+.card__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-top: 16px;
+  gap: 12px;
+}
+
+/* Ticket actual */
+.card__current { text-align: center; }
+
+.card__section-label {
+  font-size: .68rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  margin-bottom: 4px;
+}
+
+.card__ticket-code {
+  font-size: clamp(1.8rem, 3.2vw, 3rem);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  letter-spacing: .02em;
+  transition: color .3s;
+}
+
+.card__ticket-code.empty {
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-weight: 400;
+  color: var(--text-light);
+}
+
+/* Flash al actualizar */
+.card__ticket-code.flash {
+  animation: flash-code .5s ease-out;
+}
+@keyframes flash-code {
+  0%   { color: var(--teal); transform: scale(1.08); }
+  100% { color: var(--teal); transform: scale(1); }
+}
+
+/* Sección siguiente */
+.card__next-box {
+  background: var(--divider);
+  border-radius: 10px;
+  padding: 8px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card__next-code {
+  font-size: clamp(.9rem, 1.3vw, 1.15rem);
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.card__next-code.empty { color: var(--text-light); font-weight: 400; }
+
+/* En espera */
+.card__waiting {
+  text-align: center;
+}
+
+.card__waiting-count {
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+
+/* ─── SKELETON ────────────────────────────────────────────── */
+.clinic-card.is-loading {
+  overflow: hidden;
+}
+.clinic-card.is-loading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+    transparent 0%, rgba(255,255,255,.6) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s linear infinite;
+}
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position:  200% 0; }
+}
+
+/* ─── TOAST ───────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%) translateY(130px);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  box-shadow: 0 12px 48px rgba(0,0,0,.25);
+  border-left: 5px solid var(--teal);
+  transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+  z-index: 100;
+  pointer-events: none;
+  min-width: 320px;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+
+.toast__icon { font-size: 1.8rem; }
+
+.toast__body {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.toast__label {
+  font-size: .65rem;
+  font-weight: 500;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+}
+
+.toast__code {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+}
+
+.toast__clinic {
+  font-size: .82rem;
+  color: var(--text-mid);
+  font-weight: 500;
+}
+
+/* ─── SCROLLBAR OCULTO ────────────────────────────────────── */
+::-webkit-scrollbar { display: none; }

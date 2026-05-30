@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sala de Espera — Sistema de Clínicas</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMiAzMiI+PHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzJiYmZhYSIvPjxyZWN0IHg9IjEzIiB5PSI2IiB3aWR0aD0iNiIgaGVpZ2h0PSIyMCIgcng9IjIiIGZpbGw9IndoaXRlIi8+PHJlY3QgeD0iNiIgeT0iMTMiIHdpZHRoPSIyMCIgaGVpZ2h0PSI2IiByeD0iMiIgZmlsbD0id2hpdGUiLz48L3N2Zz4="
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ─── HEADER ─────────────────────────────────────────── -->
+    <header class="header">
+      <h1 class="header__title">Sala de Espera</h1>
+      <p class="header__clock" id="clock">--:--:--</p>
+      <div class="header__ws">
+        <div class="header__dot" id="ws-dot"></div>
+        <span class="header__status" id="ws-label">Conectando…</span>
+      </div>
+    </header>
+
+    <!-- ─── GRID DE CLÍNICAS ───────────────────────────────── -->
+    <main class="grid" id="clinics-grid">
+      <!-- Tarjetas generadas dinámicamente desde app.js -->
+    </main>
+
+    <!-- ─── TOAST DE LLAMADO ──────────────────────────────── -->
+    <div class="toast" id="call-toast" aria-live="assertive">
+      <div class="toast__icon">🔔</div>
+      <div class="toast__body">
+        <span class="toast__label">Turno llamado</span>
+        <span class="toast__code" id="toast-code">—</span>
+        <span class="toast__clinic" id="toast-clinic">—</span>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
